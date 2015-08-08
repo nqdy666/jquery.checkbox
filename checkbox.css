@@ -1,0 +1,19 @@
+.checkbox{
+    position:relative;
+    color:#888;
+    height:17px;line-height:17px;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    padding-left:22px;
+    background:url(./checkbox.png) no-repeat;
+    overflow:hidden;
+    vertical-align:middle;
+}
+.checkbox.active{
+    background:url(./checkbox.png) no-repeat 0 -17px;
+}
+.checkbox input{
+    position:absolute;
+    left:-100px;
+}

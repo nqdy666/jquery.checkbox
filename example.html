@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./checkbox.css"/>
+</head>
+<body>
+
+<div>
+    <p>第一组</p>
+    <label data-group="group1" data-name="name1"><input type="checkbox"/>请点击我1</label>
+    <label class="checkbox" data-group="group1" data-name="name1"><input type="checkbox"/>请点击我2</label>
+    <label class="checkbox" data-group="group1" data-name="name1"><input type="checkbox"/>请点击我3</label>
+    <label class="checkbox" data-group="group1" id="checkbox4"><input type="checkbox"/>请点击我4</label>
+
+    <label class="checkbox" id="other"><input type="checkbox"/>不属于第一个组</label>
+    <div>
+        <input type="button" id="mBtn1" value="设置组1"/>
+        <input type="button" id="mBtn2" value="单独设置第4个按钮"/>
+        <input type="button" id="mBtn3" value="设置第1,2，3按钮"/>
+        <input type="button" id="mBtn4" value="设置其他按钮"/>
+        <input type="button" id="mBtn5" value="触发按钮4的点击事件"/>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!--<script type="text/javascript" src="./jquery-1.11.2.min.js"></script>-->
+<script type="text/javascript" src="./jquery.checkbox.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        var mCheckbox = $.QjzdCheckbox("label[data-group=group1]"); //默认不选中
+
+//      var mCheckbox = $.QjzdCheckbox("label[data-group=group2]", true);
+//      var mCheckbox = $.QjzdCheckbox("label[data-group=group2]", {checked: true});
+        var flag = true;
+        $("#mBtn1").click(function() {
+            mCheckbox.setChecked(flag);
+           if (flag === true) {
+               flag = false;
+           } else {
+               flag = true;
+           }
+        });
+        $("#mBtn2").click(function() {
+            var flag = mCheckbox.getChecked("#checkbox4");
+            mCheckbox.setChecked("#checkbox4", !flag);
+        });
+
+        $("#mBtn3").click(function(){
+            var flag = mCheckbox.getChecked("label[data-name]");
+            mCheckbox.setChecked("label[data-name]", !flag);
+        });
+
+        $("#mBtn4").click(function() {
+            var flag = mCheckbox.getChecked("#other");
+            if (flag === undefined) {
+                alert(flag);
+            } else {
+                mCheckbox.setChecked("#other", !flag);
+            }
+        });
+
+        //点击触发点击事件
+        $("#mBtn5").click(function () {
+            mCheckbox.trigger("click", "#checkbox4");
+        });
+
+        //注册点击事件
+        mCheckbox.on("click", function($inputCheckbox) {
+            if ($inputCheckbox.parent().attr("id") === "checkbox4") {
+                alert($inputCheckbox.prop("checked"));
+            }
+        });
+    });
+</script>
+</html>
