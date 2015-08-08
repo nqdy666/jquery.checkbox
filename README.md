@@ -5,11 +5,9 @@
 jquery-1.11.2.min.js
 ### 使用
 引用css
-
-`<link rel="stylesheet" type="text/css" href="checkbox.css"/>`
+```<link rel="stylesheet" type="text/css" href="checkbox.css"/>```
 引用js
-
-`<script type="text/javascript" src="jquery.checkbox.js"></script>`
+```<script type="text/javascript" src="jquery.checkbox.js"></script>```
 ### 基本方法
 在html页面上, input checkbox一定要包含一个label
 ```
